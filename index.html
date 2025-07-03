@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Number Tagger</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div id="current-datetime" style="color:#232946;background:#ffe066;font-size:1.15rem;font-weight:700;margin-bottom:18px;padding:8px 0;border-radius:8px;text-align:center;box-shadow:0 2px 8px #ffe06644;letter-spacing:1px;"> </div>
+      <h2>Taggers</h2>
+      <ul id="tagger-list">
+        <li class="tagger active" data-name="Mark">Mark</li>
+        <li class="tagger" data-name="Mays">Mays</li>
+        <li class="tagger" data-name="Jerk">Jerk</li>
+      </ul>
+      <button id="add-tagger-btn">+ Add Tagger</button>
+      <div class="filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="untagged">Untagged</button>
+        <button class="filter" data-filter="tagged">Tagged</button>
+      </div>
+      <div class="tagger-action">
+        <input type="text" id="assign-name" placeholder="Enter agent name..." />
+        <button id="tag-btn" disabled>Tag</button>
+      </div>
+      <input type="text" id="agent-search" placeholder="Search agent name..." style="margin-bottom:10px; margin-top:5px; padding:7px 10px; border-radius:6px; border:1px solid #eebbc3; font-size:1rem;" />
+      <div class="agent-stats" id="agent-stats"></div>
+      <button id="download-btn" style="margin-top:14px;width:100%;background:#7be495;color:#232946;font-weight:700;border:none;border-radius:6px;padding:10px 0;cursor:pointer;transition:background 0.2s;">Download Tagged</button>
+      <button id="download-untagged-btn" style="margin-top:8px;width:100%;background:#eebbc3;color:#232946;font-weight:700;border:none;border-radius:6px;padding:10px 0;cursor:pointer;transition:background 0.2s;">Download Untagged</button>
+      <button id="download-all-btn" style="margin-top:8px;width:100%;background:#ffe066;color:#232946;font-weight:700;border:none;border-radius:6px;padding:10px 0;cursor:pointer;transition:background 0.2s;">Download All Bookings</button>
+    </aside>
+    <main class="main-content">
+      <div class="upload-section">
+        <label for="excel-upload" class="upload-label">Upload Excel File</label>
+        <input type="file" id="excel-upload" accept=".xlsx, .xls" />
+      </div>
+      <div class="table-section">
+        <table id="booking-table">
+          <thead>
+            <tr id="table-header"></tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+      <!-- tagger-action moved to sidebar -->
+    </main>
+    <div id="modal-overlay" class="modal-overlay" style="display:none;">
+      <div class="modal-dialog">
+        <h3>Add New Tagger</h3>
+        <input type="text" id="modal-tagger-name" placeholder="Enter tagger name..." />
+        <div class="modal-actions">
+          <button id="modal-add-btn">Add</button>
+          <button id="modal-cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
